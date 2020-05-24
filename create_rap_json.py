@@ -16,7 +16,7 @@ genius = lyricsgenius.Genius("oRpUdk-bSIRE7Yy5LuA-aerqpFPWjt5AH3oRnqdar-PraN7heB
 
 # sys.stdout = open('log.txt', "w")
 artist_objs = []
-for name in artists[654:]:
+for name in artists[735:]:
     print('Searching ', name)
     artist = genius.search_artist(name, max_songs=max_songs, get_full_info = False)
 
