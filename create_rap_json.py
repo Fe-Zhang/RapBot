@@ -16,21 +16,18 @@ genius = lyricsgenius.Genius("oRpUdk-bSIRE7Yy5LuA-aerqpFPWjt5AH3oRnqdar-PraN7heB
 
 # sys.stdout = open('log.txt', "w")
 artist_objs = []
-for name in artists[512:]:
+for name in artists[654:]:
     print('Searching ', name)
     artist = genius.search_artist(name, max_songs=max_songs, get_full_info = False)
 
     if artist == None:
         f_missed.write(name)
     else:
-        
-        for song in artist._songs:
-            if not os.path.isdir('./lyrics/'+artist._body['name'].replace(os.path.sep, '_')): 
-                os.mkdir('./lyrics/'+artist._body['name'].replace(os.path.sep, '_'))
-            else:
-                break
+        if not os.path.isdir('./lyrics/'+artist._body['name'].replace(os.path.sep, '_')): 
+            os.mkdir('./lyrics/'+artist._body['name'].replace(os.path.sep, '_'))
 
-            with open(os.path.join('lyrics',artist._body['name'].replace(os.path.sep, '_'),song._body['full_title'].replace(os.path.sep, '_')), 'w+') as f:
+        for song in artist._songs:
+            with open(os.path.join('lyrics',artist._body['name'].replace(os.path.sep, '_'),song._body['full_title'].replace(os.path.sep, '_')), 'w') as f:
                 f.write(song._body['lyrics'])
 
         artist_objs.append(artist)
